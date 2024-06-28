@@ -2,21 +2,14 @@ package com.vdsl.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.vdsl.myapplication.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnLogEmail.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LoginEmail.class);
+            Intent intent = new Intent(MainActivity.this, ActivityLoginEmail.class);
             startActivity(intent);
         });
 
         binding.btnLogPhone.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LoginPhone.class);
+            Intent intent = new Intent(MainActivity.this, ActivityLoginPhone.class);
             startActivity(intent);
         });
 

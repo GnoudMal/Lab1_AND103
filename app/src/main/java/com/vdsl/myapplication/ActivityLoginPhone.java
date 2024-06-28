@@ -23,7 +23,7 @@ import com.vdsl.myapplication.databinding.ActivityLoginPhoneBinding;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginPhone extends AppCompatActivity {
+public class ActivityLoginPhone extends AppCompatActivity {
     private ActivityLoginPhoneBinding binding;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -42,7 +42,7 @@ public class LoginPhone extends AppCompatActivity {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                 Log.d("PhoneActivity", "onVerificationCompleted:" + credential);
-                Toast.makeText(LoginPhone.this, "Verification completed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityLoginPhone.this, "Verification completed", Toast.LENGTH_SHORT).show();
                 binding.edtOTP.setText(credential.getSmsCode());
             }
 
@@ -51,12 +51,12 @@ public class LoginPhone extends AppCompatActivity {
                 Log.w("PhoneActivity", "onVerificationFailed", e);
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
-                    Toast.makeText(LoginPhone.this, "Invalid request", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLoginPhone.this, "Invalid request", Toast.LENGTH_SHORT).show();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(LoginPhone.this, "Too many requests, please wait", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLoginPhone.this, "Too many requests, please wait", Toast.LENGTH_SHORT).show();
                 } else if (e instanceof FirebaseAuthMissingActivityForRecaptchaException) {
                     // reCAPTCHA verification attempted with null Activity
-                    Toast.makeText(LoginPhone.this, "reCAPTCHA verification attempted with null Activity", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLoginPhone.this, "reCAPTCHA verification attempted with null Activity", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -95,7 +95,7 @@ public class LoginPhone extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(v -> {
             String otp = binding.edtOTP.getText().toString();
             if (otp.isEmpty()) {
-                Toast.makeText(LoginPhone.this, "Tàna", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityLoginPhone.this, "Tàna", Toast.LENGTH_SHORT).show();
             } else {
                 credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
                 signInWithPhoneAuthCredential(credential);
@@ -118,13 +118,13 @@ public class LoginPhone extends AppCompatActivity {
 
                             Log.d("PhoneActivity", "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
-                            Toast.makeText(LoginPhone.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginPhone.this, LogOut.class);
+                            Toast.makeText(ActivityLoginPhone.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ActivityLoginPhone.this, HomeActivity.class);
                             startActivity(intent);
                         } else {
                             Log.w("PhoneActivity", "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(LoginPhone.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityLoginPhone.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

@@ -5,9 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogOut"
+    tools:context=".HomeActivity"
     android:orientation="vertical"
     android:gravity="center">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="logout.json"
+        app:lottie_loop="true" />
 
     <Button
         android:layout_width="match_parent"
